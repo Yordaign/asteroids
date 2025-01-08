@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -20,7 +21,7 @@ def main():
 
     player = Player(x, y)
     asteroidfield = AsteroidField()
-    
+
     background_colour = (0,0,0)
     fps = pygame.time.Clock()
     dt = 0
@@ -36,6 +37,10 @@ def main():
         dt = fps.tick(60) / 1000
         for sprite in updatable:
             sprite.update(dt)
+        for sprite in asteroids:
+            if sprite.collision(player):
+                print("Game Over!")
+                sys.exit()
 
 if __name__ == "__main__":
     main()
