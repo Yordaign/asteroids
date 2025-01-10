@@ -45,6 +45,13 @@ def main():
             if sprite.collision(player):
                 print("Game Over!")
                 sys.exit()
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collision(asteroid):
+                    asteroid.kill()
+                    shot.kill()
+
+
 
 if __name__ == "__main__":
     main()
